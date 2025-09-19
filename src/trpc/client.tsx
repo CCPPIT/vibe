@@ -41,10 +41,10 @@ function getUrl() {
     if (typeof window !== 'undefined') return '';
     
     // إذا كنا على Vercel (جانب الخادم)، استخدام URL الخاص بـ Vercel
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    
+    // if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+    return process.env.NEXT_PUBLIC_APP_URL;
     // التطوير المحلي: استخدام localhost
-    return 'http://localhost:3000';
+    // return 'http://localhost:3000';
   })();
 
   // إرجاع URL كامل لنقطة نهاية tRPC

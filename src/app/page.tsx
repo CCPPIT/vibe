@@ -1,11 +1,30 @@
 
+"use client"
+import { Button } from '@/components/ui/button'
+import { useTRPC } from '@/trpc/client'
+import { useMutation } from '@tanstack/react-query';
 import React from 'react'
+import { toast } from 'sonner';
   
   
   
   const Page = () => {
+    const trpc=useTRPC();
+    const invocke=useMutation(trpc.invoke.mutationOptions({
+      onSuccess:()=>{
+        toast.success("Background job started")
+      },
+      onError:()=>{
+        toast.error("Background not job")
+
+      }
+    }))
     return (
-      <div>Hello</div>
+      <div className='p-4 max-w-7xl mx-auto'>
+        <Button disabled={invocke.isPending} onClick={()=>invocke.mutate({text:"ccpp"})}>
+          Invoke Background Job
+        </Button>
+      </div>
     )
   }
   export default Page
