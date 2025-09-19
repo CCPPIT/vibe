@@ -8,9 +8,9 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import { createTRPCContext } from '@trpc/tanstack-react-query';
 import { useState } from 'react';
+import superjson from 'superjson';
 import { makeQueryClient } from './query-client';
 import type { AppRouter } from './routers/_app';
-import superjson from "superjson"
 
 // إنشاء سياق TRPC الذي يوفر وظائف tRPC للتطبيق
 export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
@@ -39,13 +39,12 @@ function getUrl() {
   const base = (() => {
     // إذا كنا في المتصفح (جانب العميل)، استخدام المسار النسبي
     if (typeof window !== 'undefined') return '';
-    return process.env.NEXT_PUBLIC_APP_URL;
     
     // إذا كنا على Vercel (جانب الخادم)، استخدام URL الخاص بـ Vercel
-    // if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
     
-    // // التطوير المحلي: استخدام localhost
-    // return 'http://localhost:3000';
+    // التطوير المحلي: استخدام localhost
+    return 'http://localhost:3000';
   })();
 
   // إرجاع URL كامل لنقطة نهاية tRPC
@@ -68,7 +67,7 @@ export function TRPCReactProvider(
     createTRPCClient<AppRouter>({
       links: [
         httpBatchLink({
-          transformer: superjson, //<-- إذا كنت تستخدم محول بيانات (معلق حالياً)
+          transformer: superjson, // محول البيانات المطابق للخادم
           url: getUrl(), // تعيين URL لنقطة نهاية tRPC
         }),
       ],
@@ -108,7 +107,7 @@ export function TRPCReactProvider(
 
 // 🛡️ أمان البيانات:
 // - العزل التام بين عملاء الخادم (منع تسرب بيانات بين المستخدمين)
-// - إدارة منفصلة للحالة على الخادم والعميل
+// - إدارة منفصلة للحولة على الخادم والعميل
 
 // 🔄 دورة الحياة:
 // 1. الخادم: عميل جديد لكل طلب → عزل تام
@@ -139,5 +138,22 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
+}
+*/
+
+// 🚀 مثال الاستخدام في المكونات:
+/*
+import { useTRPC } from './trpc-provider';
+
+function MyComponent() {
+  const { trpc } = useTRPC();
+  
+  // استخدام الاستعلامات
+  const { data } = trpc.user.getById.useQuery({ id: '123' });
+  
+  // استخدام الطفرات
+  const mutation = trpc.user.create.useMutation();
+  
+  return <div>{data?.name}</div>;
 }
 */

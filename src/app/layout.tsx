@@ -31,7 +31,11 @@ export default function RootLayout({
   return (
     <TRPCReactProvider>
 
+<<<<<<< HEAD
     
+=======
+   
+>>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
     <html lang="en"
     suppressHydrationWarning
     >
@@ -42,6 +46,10 @@ export default function RootLayout({
         {children}
       </body>
     </html>
+<<<<<<< HEAD
     </TRPCReactProvider>
+=======
+     </TRPCReactProvider>
+>>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
   );
 }

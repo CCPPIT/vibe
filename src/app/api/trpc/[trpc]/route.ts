@@ -1,3 +1,4 @@
+
 // معالج طلبات tRPC لبيئة Next.js مع App Router
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { createTRPCContext } from '@/trpc/init';
@@ -111,3 +112,16 @@ export function OPTIONS() {
 // - هذا الملف يجب أن يكون في app/api/trpc/route.ts
 // - Next.js يتعامل معه تلقائياً كـ Route Handler
 // - يدعم كل من App Router و Pages Router
+
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
+import { createTRPCContext } from '@/trpc/init';
+import { appRouter } from '@/trpc/routers/_app';
+const handler = (req: Request) =>
+  fetchRequestHandler({
+    endpoint: '/api/trpc',
+    req,
+    router: appRouter,
+    createContext: createTRPCContext,
+  });
+export { handler as GET, handler as POST };
+

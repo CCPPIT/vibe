@@ -19,6 +19,8 @@ export const trpc = createTRPCOptionsProxy({
   queryClient: getQueryClient, // عميل الاستعلامات (يتم مشاركته خلال نفس الطلب)
 });
 
+export const caller = appRouter.createCaller(createTRPCContext);
+
 // إذا كان الراوتر على خادم منفصل، يمكنك تمرير عميل مخصص:
 /*
 createTRPCOptionsProxy({
