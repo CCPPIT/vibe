@@ -32,7 +32,11 @@ export default function RootLayout({
     <TRPCReactProvider>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     
+=======
+   
+>>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
 =======
    
 >>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
@@ -47,7 +51,11 @@ export default function RootLayout({
       </body>
     </html>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </TRPCReactProvider>
+=======
+     </TRPCReactProvider>
+>>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
 =======
      </TRPCReactProvider>
 >>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
