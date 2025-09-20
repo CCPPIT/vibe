@@ -7,10 +7,8 @@ import { cache } from 'react';
 import { createTRPCContext } from './init';
 import { makeQueryClient } from './query-client';
 import { appRouter } from './routers/_app';
-<<<<<<< HEAD
-=======
+
 import { createTRPCClient, httpLink } from '@trpc/client';
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
 
 // مهم: إنشاء getter مستقر لعميل الاستعلامات
 // الذي سيعيد نفس العميل خلال نفس الطلب (Request)
@@ -22,8 +20,6 @@ export const trpc = createTRPCOptionsProxy({
   router: appRouter,           // الراوتر الرئيسي للتطبيق
   queryClient: getQueryClient, // عميل الاستعلامات (يتم مشاركته خلال نفس الطلب)
 });
-<<<<<<< HEAD
-
 export const caller = appRouter.createCaller(createTRPCContext);
 
 // إذا كان الراوتر على خادم منفصل، يمكنك تمرير عميل مخصص:
@@ -35,8 +31,7 @@ createTRPCOptionsProxy({
   queryClient: getQueryClient, // عميل الاستعلامات المشترك
 });
 */
-=======
-export const caller=appRouter.createCaller(createTRPCContext)
+
 
 // إذا كان الراوتر على خادم منفصل، يمكنك تمرير عميل مخصص:
 // createTRPCOptionsProxy({
@@ -45,7 +40,6 @@ export const caller=appRouter.createCaller(createTRPCContext)
 //   }),
 //   queryClient: getQueryClient, // عميل الاستعلامات المشترك
 // });
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
 
 // 📝 شرح المفاهيم الأساسية:
 
@@ -95,7 +89,7 @@ export const caller=appRouter.createCaller(createTRPCContext)
 // - هذا الملف للاستخدام على الخادم فقط (Server Components)
 // - لا يمكن استخدامه في مكونات العميل (Client Components)
 // - يتم إنشاء سياق منفصل لكل طلب لضمان العزل
-<<<<<<< HEAD
+
 // - عميل الاستعلامات يتم مشاركته خلال نفس الطلب فقط
 
 // 🔧 مثال الاستخدام في Server Components:
@@ -142,6 +136,6 @@ export default async function ServerComponent() {
 // 1. استخدم هذا للمكونات التي تحتاج بيانات من الخادم
 // 2. استخدم العميل للمكونات التفاعلية
 // 3. اجمع بين الاثنين لأفضل تجربة مستخدم
-=======
+
 // - عميل الاستعلامات يتم مشاركته خلال نفس الطلب فقط
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
+
