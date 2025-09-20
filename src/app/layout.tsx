@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +32,12 @@ export default function RootLayout({
   return (
     <TRPCReactProvider>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-=======
+
+
    
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
-=======
+
    
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
+
     <html lang="en"
     suppressHydrationWarning
     >
@@ -47,17 +45,15 @@ export default function RootLayout({
       suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Toaster/>
         {children}
       </body>
     </html>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     </TRPCReactProvider>
-=======
-     </TRPCReactProvider>
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
-=======
-     </TRPCReactProvider>
->>>>>>> e1ed815f1386464be7226be2078749dc1882af3f
+
+     
+
+    
   );
 }
