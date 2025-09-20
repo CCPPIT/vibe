@@ -2,15 +2,17 @@
 "use client"
 
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { useTRPC } from '@/trpc/client'
 import { useMutation } from '@tanstack/react-query'
-import React from 'react'
+import React, { useState } from 'react'
 import { toast } from 'sonner'
 
   
   
   
   const Page = () => {
+    const [value,setValue]=useState("")
     const trpc=useTRPC()
     const invocke=useMutation(trpc.invocke.mutationOptions({
       onSuccess:()=>{
@@ -22,7 +24,8 @@ import { toast } from 'sonner'
 
     return (
       <div className='p-4'>
-        <Button disabled={invocke.isPending} onClick={()=>invocke.mutate({text:"TTTTTTTT"})}>
+        <Input value={value} onChange={(e)=>setValue(e.target.value)}/>
+        <Button disabled={invocke.isPending} onClick={()=>invocke.mutate({value:value})}>
           Background Job
         </Button>
 
