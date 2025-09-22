@@ -12,11 +12,11 @@ export function lastAssistantTextMessageContent(result:AgentResult){
     const lastAssistantTextMessageIndex=result.output.findLastIndex(
         (mesage)=>mesage.role==="assistant"
     )
-    const mesage=result.output[lastAssistantTextMessageIndex]as |TextMessage|undefined
-    return mesage?.content
-    ?typeof mesage.content==="string"
-    ?mesage.content
-    :mesage.content.map((c)=>c.text).join("")
+    const message=result.output[lastAssistantTextMessageIndex]as |TextMessage|undefined
+    return message?.content
+    ?typeof message.content==="string"
+    ?message.content
+    :message.content.map((c)=>c.text).join("")
     :undefined
 
 }
